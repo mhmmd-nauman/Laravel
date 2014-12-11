@@ -23,7 +23,7 @@ class CreateAddressTable extends Migration {
                         $table->string('city', 50);
                         $table->string('zip', 50);
 			$table->string('address', 100);
-                       
+                        $table->timestamps();
 		});
              
              

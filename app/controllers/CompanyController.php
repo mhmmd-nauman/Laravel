@@ -46,27 +46,27 @@ class CompanyController extends \BaseController {
 		// read more on validation at http://laravel.com/docs/validation
 		$rules = array(
 			'name'       => 'required',
-			'email'      => 'required|email',
-			'nerd_level' => 'required|numeric'
+			//'vatId'      => 'required'
+			
 		);
 		$validator = Validator::make(Input::all(), $rules);
 
 		// process the login
 		if ($validator->fails()) {
-			return Redirect::to('nerds/create')
+			return Redirect::to('companies/create')
 				->withErrors($validator)
 				->withInput(Input::except('password'));
 		} else {
 			// store
-			$nerd = new Nerd;
-			$nerd->name       = Input::get('name');
-			$nerd->email      = Input::get('email');
-			$nerd->nerd_level = Input::get('nerd_level');
-			$nerd->save();
+			$company = new Company;
+			$company->name       = Input::get('name');
+			$company->vatId      = Input::get('vatId');
+			//$nerd->nerd_level = Input::get('nerd_level');
+			$company->save();
 
 			// redirect
-			Session::flash('message', 'Successfully created nerd!');
-			return Redirect::to('nerds');
+			Session::flash('message', 'Successfully created company!');
+			return Redirect::to('companies');
 		}
 	}
 
@@ -79,18 +79,10 @@ class CompanyController extends \BaseController {
 	public function show($id)
 	{
 		
-		$address = Address::find($id);
-               
-                //$blogposts = $address->blogposts;
-                //echo "<pre>";
-                //print_r($blogposts->toArray());
-                //echo "</pre>";
-		//$BlogpostsData=Blogpost::all();
-		return View::make('tags.show')
-			->with(compact('address'));
-                        //->with('blogposts', $blogposts)   
-                        //->with('tag', $tag);
-                       
+		$company = Company::find($id);
+                return View::make('companies.show')
+			->with(compact('company'));
+                               
 	}
 
 	/**
@@ -126,11 +118,11 @@ class CompanyController extends \BaseController {
                 //$nerd->save();
                 //print(Input::get('selected_posts')->toJson());
                 //exit;
-                Tag::find($id)->blogposts()->sync(Input::get('selected_posts'));
+                //Tag::find($id)->blogposts()->sync(Input::get('selected_posts'));
                 //$user->tasks()->sync([5,6,7,8], false);
                 // redirect
                 Session::flash('message', 'Successfully updated nerd!');
-                return Redirect::to('tags');
+                return Redirect::to('companies');
 		
 	}
 

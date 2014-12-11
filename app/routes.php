@@ -16,13 +16,14 @@ Route::get('/', function()
 	return View::make('hello');
 });
 */
-
-Route::get('/', function()
+Route::resource('/', 'CompanyController');
+Route::get('home', function()
 {
     //$tag = new Tag(array('name' => 'wamp'));
     //Blogpost::find(2)->tags()->save($tag);
-    $blogpost = Blogpost::find(2);
-    return $blogpost->tags;
+    //$blogpost = Blogpost::find(2);
+    //return $blogpost->tags;
+    
 });
 
 Route::resource('companies', 'CompanyController');

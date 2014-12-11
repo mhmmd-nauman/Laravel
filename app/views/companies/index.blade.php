@@ -28,7 +28,7 @@
 		<tr>
 			<td>ID</td>
 			<td>Name</td>
-			<td>Posts</td>
+			<td></td>
 			<td></td>
 			<td>Actions</td>
 		</tr>
@@ -37,9 +37,9 @@
 	@foreach($companies as $key => $value)
 		<tr>
 			<td>{{ $value->id }}</td>
-			<td>{{ $value->city }}</td>
-                        <td>{{ $value->zip }}</td>
-                        <td>{{ $value->address }}</td>
+			<td>{{ $value->name }}</td>
+                        <td>{{ $value->vatId }}</td>
+                        <td></td>
 
 			<!-- we will also add show, edit, and delete buttons -->
 			<td width="350">
